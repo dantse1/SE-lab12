@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fairfield Library</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header th:replace="~{fragments/header :: header}"></header>
+        <p>Complete the following forum to add a new student</p>
+        <form  th:action="@{/add}" th:object="${student}" method="post">
+            <table border="1">
+                <tr>
+                    <td>First Name(required):</td>
+                    <td><input type="text" th:field="*{firstName}" /></td>
+                    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
+                </tr>
+                <tr>
+                    <td>Middle Name:</td>
+                    <td><input type="text" th:field="*{middleName}" /></td>
+
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" th:field="*{lastName}" /></td>
+
+                </tr>
+                <tr>
+                    <td>Commulative GPA:</td>
+                    <td><input type="number" th:field="*{cgpa}" /></td>
+
+                </tr>
+                <tr>
+                    <td>International>:</td>
+                    <td>
+                        <select th:field="*{isInternational}">
+                            <option th:value="1" >Yes</option>
+                            <option th:value="0" >No</option>
+                        </select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Enrollment Date:</td>
+                    <td>
+                        <input type="date"th:field="*{enrollmentDate}" required/></td>
+
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+                </tr>
+                <input type="hidden" th:field="*{studentId}" />
+            </table>
+        </form>
+    </body>
+</html>
